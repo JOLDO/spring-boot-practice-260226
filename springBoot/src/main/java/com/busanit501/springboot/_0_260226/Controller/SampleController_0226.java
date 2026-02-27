@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 @Log4j2
-public class SampleController {
+public class SampleController_0226 {
 
     @GetMapping("/_0_260226/hello")
     public void hello(Model model) {
