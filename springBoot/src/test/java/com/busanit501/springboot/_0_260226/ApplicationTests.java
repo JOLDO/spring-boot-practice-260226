@@ -1,4 +1,4 @@
-package com.busanit501.springboot;
+package com.busanit501.springboot._0_260226;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

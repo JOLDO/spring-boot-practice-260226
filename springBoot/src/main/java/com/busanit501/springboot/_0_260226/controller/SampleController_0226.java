@@ -1,4 +1,4 @@
-package com.busanit501.springboot._0_260226.Controller;
+package com.busanit501.springboot._0_260226.controller;
 
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;

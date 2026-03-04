@@ -1,6 +1,5 @@
-package com.busanit501.springboot._1_260227.Controller;
+package com.busanit501.springboot._1_260227.controller;
 
-import lombok.Getter;
 import lombok.ToString;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;

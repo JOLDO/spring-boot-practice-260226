@@ -1,4 +1,4 @@
-package com.busanit501.springboot;
+package com.busanit501.springboot._0_260226;
 
 import lombok.Cleanup;
 import lombok.extern.log4j.Log4j2;
