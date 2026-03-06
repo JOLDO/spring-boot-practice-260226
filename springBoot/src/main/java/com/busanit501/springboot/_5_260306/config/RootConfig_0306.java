@@ -1,4 +1,4 @@
-package com.busanit501.springboot._3_260304.config;
+package com.busanit501.springboot._5_260306.config;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
@@ -6,10 +6,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class RootConfig_0304 {
+public class RootConfig_0306 {
 
     @Bean
-    public ModelMapper getMapper_0304() {
+    public ModelMapper getMapper_0306() {
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration()
             .setFieldMatchingEnabled(true)

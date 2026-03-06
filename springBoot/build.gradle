@@ -72,6 +72,13 @@ dependencies {
     // 모델 맵퍼, DTO <-> VO 변환 해주는 도구.
     // https://mvnrepository.com/artifact/org.modelmapper/modelmapper
     implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.2.4'
+
+    // 5
+// https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator
+    implementation group: 'org.hibernate', name: 'hibernate-validator', version: '6.2.1.Final'
+
+    //6
+    implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.7.0'
 }
 
 tasks.named('test') {

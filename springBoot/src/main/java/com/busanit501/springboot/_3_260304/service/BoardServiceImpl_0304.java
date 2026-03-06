@@ -9,6 +9,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,7 @@ import java.util.stream.Collectors;
 @Transactional  //작업후 commit/rollback을 위해서
 public class BoardServiceImpl_0304 implements BoardService_0304 {
 //화면으로부터 글작성 재료를 DTO에 받아서 엔티티 객체 타입으로 변환해서 전달하는 용도
+    @Qualifier("getMapper_0304")
     private final ModelMapper modelMapper;  //DTO -> Entity 객체 변환
     private final BoardRepository_0304 boardRepository_0304;    //실제 DB에 일을 시키는 기능
 
