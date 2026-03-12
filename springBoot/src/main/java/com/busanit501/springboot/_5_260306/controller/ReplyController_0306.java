@@ -1,6 +1,7 @@
 package com.busanit501.springboot._5_260306.controller;
 
 import com.busanit501.springboot._5_260306.dto.ReplyDTO_0306;
+import com.busanit501.springboot._5_260306.service.ReplyService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -39,6 +41,8 @@ public class ReplyController_0306 {
     // Jackson 컨버터 도구가, 알아서, 역직렬화 해줌.
 
     //ReplyService 만들어서, 작업해야함.
+    private final ReplyService replyService;
+
     @Tag(name = "댓글 등록 post 방식",
             description = "댓글 등록을 진행함, post 형식으로")
     @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -46,16 +50,18 @@ public class ReplyController_0306 {
             @Valid @RequestBody ReplyDTO_0306 replyDTO,
             BindingResult bindingResult
     ) throws BindException {
-        log.info(" ReplyController replyDTO: ", replyDTO);
+        log.info("ReplyController replyDTO : " + replyDTO);
         // 확인용, 더미 데이터 ,
 
         if (bindingResult.hasErrors()) {
             throw new BindException(bindingResult);
         }
-//        Long rno = replyService.register(replyDTO);
-        Map<String,Long> map = Map.of("rno",123L);
+        Long rno = replyService.register(replyDTO);
+        Map<String, Long> resultMap = new HashMap<>();
+        resultMap.put("rno", rno);
+//        Map<String,Long> map = Map.of("rno",123L);
         // ResponseEntity.ok : 200, 정상 응답 코드 의미,
         // map : 데이터를 같이 전달.
-        return ResponseEntity.ok(map);
+        return ResponseEntity.ok(resultMap);
     }
 }

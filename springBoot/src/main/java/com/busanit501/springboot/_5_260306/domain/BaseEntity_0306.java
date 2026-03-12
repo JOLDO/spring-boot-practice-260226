@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 //@CreatedDate나 @LastModifiedDate같은 어노테이이 붙은걸 자동 주입해주겠다는 뜻
 @EntityListeners(value = {AuditingEntityListener.class})
 @Getter
-abstract class BaseEntity_0306 {
+abstract class BaseEntity_0306 {    //abstract로 쓰는이유는 직접적으로 BaseEntity를 생성하는걸 막기 위해서(관례)
     //설계 클래스 목적으로 사용
 
     //생성 시간 필드

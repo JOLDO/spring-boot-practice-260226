@@ -1,6 +1,7 @@
 package com.busanit501.springboot._5_260306.controller;
 
 import com.busanit501.springboot._5_260306.dto.BoardDTO_0306;
+import com.busanit501.springboot._5_260306.dto.BoardListReplyCountDTO;
 import com.busanit501.springboot._5_260306.dto.PageRequestDTO_0306;
 import com.busanit501.springboot._5_260306.dto.PageResponseDTO_0306;
 import com.busanit501.springboot._5_260306.service.BoardService_0306;
@@ -27,15 +28,18 @@ public class BoardController_0306 {
 
     @GetMapping("/list")
     public void list(PageRequestDTO_0306 pageRequestDTO_0306, Model model) {
-        PageResponseDTO_0306<BoardDTO_0306> responseDTO = boardService_0306.list(pageRequestDTO_0306);
+//        PageResponseDTO_0306<BoardDTO_0306> responseDTO = boardService_0306.list(pageRequestDTO_0306);
+
+        //목록 + 댓글 개수
+        PageResponseDTO_0306<BoardListReplyCountDTO> responseDTO = boardService_0306.listWithReplyCount(pageRequestDTO_0306);
         log.info("BoardController에서 responseDTO 확인 : " + responseDTO);
         model.addAttribute("responseDTO", responseDTO);
 
-        for(String search : TEST2) {
-            if(search.contains(decomposeKorean("ㅂㅓ"))) {
-                log.info("출력 : " + search);
-            }
-        }
+//        for(String search : TEST2) {
+//            if(search.contains(decomposeKorean("ㅂㅓ"))) {
+//                log.info("출력 : " + search);
+//            }
+//        }
     }
 
     //화면제공
@@ -96,7 +100,7 @@ public class BoardController_0306 {
         return "redirect:/_5_260306/board/list";
     }
 
-    // 한국어 자모 분리 함수
+    /*// 한국어 자모 분리 함수
     // 예) "사과" → "ㅅㅏㄱㅗㅏ", "없음" → "ㅇㅓㅂㅅㅇㅡㅁ"
     private static final char[] CHOSUNG  = {'ㄱ','ㄲ','ㄴ','ㄷ','ㄸ','ㄹ','ㅁ','ㅂ','ㅃ','ㅅ','ㅆ','ㅇ','ㅈ','ㅉ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'};
     private static final char[] JOONGSUNG = {'ㅏ','ㅐ','ㅑ','ㅒ','ㅓ','ㅔ','ㅕ','ㅖ','ㅗ','ㅘ','ㅙ','ㅚ','ㅛ','ㅜ','ㅝ','ㅞ','ㅟ','ㅠ','ㅡ','ㅢ','ㅣ'};
@@ -136,5 +140,5 @@ public class BoardController_0306 {
             }
         }
         return sb.toString();
-    }
+    }*/
 }

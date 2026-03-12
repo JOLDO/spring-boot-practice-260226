@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 public class SwaggerConfig_0306 {
 
     @Bean
-    public OpenAPI openAPI() {
+    public OpenAPI openAPI() {  //스웨거 사용하기 위한 빈 주입
         return new OpenAPI()
                 .info(new Info()    //import io.swagger.v3.oas.models.info.Info;
                         .title("레스트 API 테스트")

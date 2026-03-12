@@ -1,6 +1,7 @@
 package com.busanit501.springboot._5_260306.repository.search;
 
 import com.busanit501.springboot._5_260306.domain.Board_0306;
+import com.busanit501.springboot._5_260306.dto.BoardListReplyCountDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -22,4 +23,8 @@ public interface BoardSearch_0306 {
     {@link Page}
      */
     Page<Board_0306> searchAll(String[] types, String keyword, Pageable pageable);
+
+    //페이징 + 검색 + 댓글의 갯수 포함
+    Page<BoardListReplyCountDTO> searchWithReplyCount(String[] types, String keyword, Pageable pageable);
+
 }

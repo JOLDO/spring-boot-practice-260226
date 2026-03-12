@@ -1,7 +1,5 @@
 package com.busanit501.springboot._5_260306.dto;
 
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 import java.time.LocalDateTime;

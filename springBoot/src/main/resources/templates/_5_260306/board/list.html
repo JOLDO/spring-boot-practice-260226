@@ -66,9 +66,13 @@
             <tr th:each="dto:${responseDTO.dtoList}">
               <th scope="row">[[${dto.bno}]]</th>
               <td>
-                <a th:href="|@{/_5_260306/board/read(bno=${dto.bno})}&${link}|">
+                <a th:href="|@{/_5_260306/board/read(bno=${dto.bno})}&${pageRequestDTO_0306.link}|">
                   [[${dto.title}]]
                 </a>
+<!--                #0a53be    red-->
+                <span class="badge progress-bar-success" style="background-color: #0a53be">
+                  [[${dto.replyCount}]]
+                </span>
               </td>
               <td>[[${dto.writer}]]</td>
               <td>[[${#temporals.format(dto.regDate,'yyyy-MM-dd HH:mm:ss')}]]</td>
@@ -108,6 +112,7 @@
         </div>
         <div class="modal-body">
           <p>Modal body text goes here.</p>
+          등록 성공 bno: [[${result}]]
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
