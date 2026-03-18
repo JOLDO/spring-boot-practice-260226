@@ -1,6 +1,9 @@
 package com.busanit501.springboot._2_260303.repository;
 
 import com.busanit501.springboot._2_260303.domain.Board_0303;
+import com.busanit501.springboot._5_260306.domain.BoardImage;
+import com.busanit501.springboot._5_260306.domain.Board_0306;
+import com.busanit501.springboot._5_260306.repository.BoardRepository_0306;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,7 @@ import org.springframework.data.domain.Sort;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.IntStream;
 
 @SpringBootTest
@@ -20,6 +24,8 @@ public class Board0303RepositoryTests {
 
     @Autowired
     private BoardRepository_0303 boardRepository_0303;
+    @Autowired
+    private BoardRepository_0306 boardRepository_0306;
 
     @Test
     public void testInsert() {
@@ -105,5 +111,20 @@ public class Board0303RepositoryTests {
         //페이징 처리가된 10개의 데이터 목록
         List<Board_0303> todoList =  result.getContent();
         log.info("출력 페이징 처리가 된 10개의 데이터 확인 : " + todoList);
+    }
+
+    //영속성 테스트 작업1 아직 고아 객체 제거 설정이 없어서 실제 삭제는 안됨
+    @Test
+    public void testInsterWithImage() {
+        Board_0306 board = Board_0306.builder()
+                .title("샘플 게시글....")
+                .content("샘플 내용....")
+                .writer("샘플 작성자....")
+                .build();
+        //첨부 이미지 3개를 작석해 Board객체에 담기
+        for(int i = 0; i < 3; i++) {
+            board.addImage(UUID.randomUUID().toString(), "file" + i + ".png");
+        }
+        boardRepository_0306.save(board);
     }
 }

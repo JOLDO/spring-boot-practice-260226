@@ -1,5 +1,7 @@
 package com.busanit501.springboot._5_260306.controller;
 
+import com.busanit501.springboot._5_260306.dto.PageRequestDTO_0306;
+import com.busanit501.springboot._5_260306.dto.PageResponseDTO_0306;
 import com.busanit501.springboot._5_260306.dto.ReplyDTO_0306;
 import com.busanit501.springboot._5_260306.service.ReplyService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -10,10 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -63,5 +62,75 @@ public class ReplyController_0306 {
         // ResponseEntity.ok : 200, 정상 응답 코드 의미,
         // map : 데이터를 같이 전달.
         return ResponseEntity.ok(resultMap);
+    }
+
+    @Tag(name = "댓글 목록 get 방식",
+            description = "댓글 조회를 진행함, get 형식으로")
+    @GetMapping(value = "/list/{bno}")
+//    @GetMapping(value = "/list")
+    public PageResponseDTO_0306<ReplyDTO_0306> getList(
+            @PathVariable("bno") Long bno,
+//            Long bno, //이렇게 하면 bno를 파람으로 받을수 있을거 같은데
+            PageRequestDTO_0306 pageRequestDTO_0306
+    ) {
+        log.info("ReplyController 게시글에 대한 댓글 목록 조회, bno확인 : " + bno);
+        // 확인용, 더미 데이터 ,
+
+        PageResponseDTO_0306<ReplyDTO_0306> responseDTO = replyService.getListOfBoard(bno, pageRequestDTO_0306);
+
+        return responseDTO;
+    }
+
+    @Tag(name = "댓글 하나 get 방식",
+            description = "댓글 조회를 진행함, get 형식으로")
+    @GetMapping(value = "/{rno}")
+//    @GetMapping(value = "/_5_260306/list")
+    public ReplyDTO_0306 getReplyDTO(
+            @PathVariable("rno") Long rno
+    ) {
+        log.info("ReplyController 게시글에 대한 댓글 하나 조회, rno확인 : " + rno);
+        // 확인용, 더미 데이터 ,
+
+        ReplyDTO_0306 replyDTO = replyService.read(rno);
+
+        return replyDTO;
+    }
+
+    @Tag(name = "댓글 삭제 delete 방식",
+            description = "댓글 삭제를 진행함, delete 형식으로")
+    @DeleteMapping(value = "/{rno}")
+//    @GetMapping(value = "/_5_260306/list")
+    public Map<String, Long> remove(
+            @PathVariable("rno") Long rno
+    ) {
+        log.info("ReplyController 댓글 삭제, rno확인 : " + rno);
+        // 확인용, 더미 데이터 ,
+
+        replyService.remove(rno);
+        Map<String, Long> resultMap = new HashMap<>();
+        resultMap.put("rno", rno);
+
+        return resultMap;
+    }
+
+    @Tag(name = "댓글 수정 put 방식",
+            description = "댓글 수정을 진행함, put 형식으로")
+    @PutMapping(value = "/{rno}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Map<String,Long> modify(
+            @PathVariable("rno") Long rno,
+//            @Valid
+            @RequestBody ReplyDTO_0306 replyDTO
+//            ,BindingResult bindingResult
+    ) throws BindException {
+        log.info("ReplyController 댓글 수정 작업 : " + replyDTO + "   댓글 번호 rno  : " + rno);
+        // 확인용, 더미 데이터 ,
+
+        replyService.modify(replyDTO);
+        Map<String, Long> resultMap = new HashMap<>();
+        resultMap.put("rno", rno);
+//        Map<String,Long> map = Map.of("rno",123L);
+        // ResponseEntity.ok : 200, 정상 응답 코드 의미,
+        // map : 데이터를 같이 전달.
+        return resultMap;
     }
 }

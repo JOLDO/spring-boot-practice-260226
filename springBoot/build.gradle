@@ -79,6 +79,11 @@ dependencies {
 
     //6
     implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.7.0'
+
+    //7
+    // 원본 이미지 -> 작은 이미지 변환 도구,
+    // https://mvnrepository.com/artifact/net.coobird/thumbnailator
+    implementation group: 'net.coobird', name: 'thumbnailator', version: '0.4.21'
 }
 
 tasks.named('test') {
