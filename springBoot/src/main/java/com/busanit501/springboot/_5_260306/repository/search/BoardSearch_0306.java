@@ -27,4 +27,7 @@ public interface BoardSearch_0306 {
     //페이징 + 검색 + 댓글의 갯수 포함
     Page<BoardListReplyCountDTO> searchWithReplyCount(String[] types, String keyword, Pageable pageable);
 
+    //N+1테스트
+    Page<BoardListReplyCountDTO> searchWithAll(String[] types, String keyword, Pageable pageable);
+
 }

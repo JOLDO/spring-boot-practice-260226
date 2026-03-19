@@ -8,6 +8,7 @@ import com.busanit501.springboot._5_260306.dto.BoardListReplyCountDTO;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.JPQLQuery;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -15,6 +16,7 @@ import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
 
 import java.util.List;
 
+@Log4j2
 public class BoardSearch_0306Impl extends QuerydslRepositorySupport implements BoardSearch_0306 {
 
     public BoardSearch_0306Impl() { //생성자 만들라는 버튼 클릭 + 매게변수 삭제 + super(사용할 엔티티.class)
@@ -153,5 +155,26 @@ public class BoardSearch_0306Impl extends QuerydslRepositorySupport implements B
         Page<BoardListReplyCountDTO> result = new PageImpl<BoardListReplyCountDTO>(dtoList, pageable, total);
 
         return result;
+    }
+
+    @Override
+    public Page<BoardListReplyCountDTO> searchWithAll(String[] types, String keyword, Pageable pageable) {
+        QBoard_0306 board = QBoard_0306.board_0306;
+        QReply_0306 reply = QReply_0306.reply_0306;
+
+        JPQLQuery<Board_0306> boardJPQLQuery = from(board);
+        boardJPQLQuery.leftJoin(reply).on(reply.board.eq(board));    //board테이블의 bno와 reply테이블의 board_bno가 같은걸 레프트(아우터) 조인함
+
+        getQuerydsl().applyPagination(pageable, boardJPQLQuery);
+
+        List<Board_0306> boardList = boardJPQLQuery.fetch();
+
+        boardList.forEach(board1 -> {
+            log.info("bno : " + board1.getBno());
+            log.info("imageSet : " + board1.getImageSet());
+            log.info("====================");
+        });
+
+        return null;
     }
 }

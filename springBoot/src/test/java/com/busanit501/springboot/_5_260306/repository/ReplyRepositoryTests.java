@@ -27,14 +27,14 @@ public class ReplyRepositoryTests {
     @Test
     public void testInsert() {
         //각자 데이터베이스의 게시글 하나에 더미 댓글 작성
-        Long bno = 19L;
+        Long bno = 1L;
         Board_0306 board = Board_0306.builder()
             .bno(bno)
             .build();
 
         Reply_0306 reply = Reply_0306.builder()
             .board(board)
-            .replyText("ㅇㅋ")
+            .replyText("ㄴㄴ")
             .replyer("졸도")
             .build();
 

@@ -9,4 +9,6 @@ import org.springframework.data.jpa.repository.Query;
 public interface ReplyRepository_0306 extends JpaRepository<Reply_0306, Long> {
     @Query("select r from Reply_0306 r where r.board.bno = :bno")
     Page<Reply_0306> listOfBoard(Long bno, Pageable pageable);
+
+    void deleteByBoard_Bno(Long bno);
 }
